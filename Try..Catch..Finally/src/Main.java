@@ -10,7 +10,7 @@ public class Main {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e.getLocalizedMessage());
+			System.out.println(e);
 		}finally {
 			System.out.println("Program will continue");
 		}
