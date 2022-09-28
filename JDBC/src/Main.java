@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 
@@ -16,18 +17,25 @@ public class Main {
 		Statement statement=null;
 		ResultSet resultSet;
 		
+		ArrayList<Product> products=new ArrayList<Product>();
+		
 		try {
 			connection=dbHelper.connectDatabase();
 			//System.out.println("Succesfully connected to database!");
 			
 			statement=connection.createStatement();
 			
-			resultSet=statement.executeQuery("insert into product (Name, Stock) values('Oppo Reno7', 13)");
-			//resultSet=statement.executeQuery("select * from product");
+			resultSet=statement.executeQuery("select * from product");
 			
-			//while (resultSet.next()) {
-				//System.out.println(resultSet.getString("Name"));
-			//}
+			while (resultSet.next()) {
+				products.add(new Product(
+						resultSet.getInt("Id"),
+						resultSet.getString("Name"),
+						resultSet.getInt("Stock")
+						));
+			}
+			
+			System.out.println(products.size());
 			
 		} catch (SQLException ex) {
 			dbHelper.showErrorMessage(ex);
