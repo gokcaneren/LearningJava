@@ -1,5 +1,9 @@
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+
 
 public class Main {
 
@@ -9,12 +13,21 @@ public class Main {
 
 		Connection connection=null;
 		DbHelper dbHelper=new DbHelper();
+		Statement statement=null;
+		ResultSet resultSet;
 		
 		try {
 			connection=dbHelper.connectDatabase();
-			System.out.println("Succesfully connected to database!");
+			//System.out.println("Succesfully connected to database!");
 			
-			connection.nativeSQL("insert into product (Name, Stock) values ('Oppo Reno6', 13)");
+			statement=connection.createStatement();
+			
+			resultSet=statement.executeQuery("insert into product (Name, Stock) values('Oppo Reno7', 13)");
+			//resultSet=statement.executeQuery("select * from product");
+			
+			//while (resultSet.next()) {
+				//System.out.println(resultSet.getString("Name"));
+			//}
 			
 		} catch (SQLException ex) {
 			dbHelper.showErrorMessage(ex);
