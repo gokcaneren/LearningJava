@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +15,7 @@ public class Main {
 
 		Connection connection=null;
 		DbHelper dbHelper=new DbHelper();
-		Statement statement=null;
+		PreparedStatement statement=null;
 		ResultSet resultSet;
 		
 		ArrayList<Product> products=new ArrayList<Product>();
@@ -23,8 +24,12 @@ public class Main {
 			connection=dbHelper.connectDatabase();
 			//System.out.println("Succesfully connected to database!");
 			
-			statement=connection.createStatement();
+			statement=connection.prepareStatement("insert into product (Name, Stock) values ('Vivo V21e', 20)");
 			
+			statement.executeUpdate();
+			
+			System.out.println("New data added to Product!");
+			/*
 			resultSet=statement.executeQuery("select * from product");
 			
 			while (resultSet.next()) {
@@ -34,8 +39,9 @@ public class Main {
 						resultSet.getInt("Stock")
 						));
 			}
-			
 			System.out.println(products.size());
+			*/
+			
 			
 		} catch (SQLException ex) {
 			dbHelper.showErrorMessage(ex);
