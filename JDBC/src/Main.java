@@ -24,6 +24,15 @@ public class Main {
 			connection=dbHelper.connectDatabase();
 			//System.out.println("Succesfully connected to database!");
 			
+			
+			String deleteSqlQuery="delete from product where Name='Oppo Reno7'";
+			statement=connection.prepareStatement(deleteSqlQuery);
+			
+			statement.executeUpdate();
+			
+			System.out.println("Product Deleted!");
+			
+			/*
 			String updateSqlQuery="update product set Stock=13 where Name=?";
 			
 			statement=connection.prepareStatement(updateSqlQuery);
@@ -32,7 +41,7 @@ public class Main {
 			
 			System.out.println("Product Updated!");
 			
-			/*
+			
 			String insertSqlQuery="insert into product (Name, Stock) values (?,?)";
 			statement=connection.prepareStatement(insertSqlQuery);
 			
