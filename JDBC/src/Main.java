@@ -24,8 +24,10 @@ public class Main {
 			connection=dbHelper.connectDatabase();
 			//System.out.println("Succesfully connected to database!");
 			
-			String updateSqlQuery="update product set Stock=13 where Name='Samsung A52S'";
+			String updateSqlQuery="update product set Stock=13 where Name=?";
+			
 			statement=connection.prepareStatement(updateSqlQuery);
+			statement.setString(1, "Vivo V21e");
 			statement.executeUpdate();
 			
 			System.out.println("Product Updated!");
