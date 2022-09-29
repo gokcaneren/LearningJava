@@ -24,7 +24,11 @@ public class Main {
 			connection=dbHelper.connectDatabase();
 			//System.out.println("Succesfully connected to database!");
 			
-			statement=connection.prepareStatement("insert into product (Name, Stock) values ('Vivo V21e', 20)");
+			String insertSqlQuery="insert into product (Name, Stock) values (?,?)";
+			statement=connection.prepareStatement(insertSqlQuery);
+			
+			statement.setString(1, "Tecno Spark 8");
+			statement.setInt(2, 7);
 			
 			statement.executeUpdate();
 			
