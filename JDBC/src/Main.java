@@ -25,8 +25,9 @@ public class Main {
 			//System.out.println("Succesfully connected to database!");
 			
 			
-			String deleteSqlQuery="delete from product where Name='Oppo Reno7'";
+			String deleteSqlQuery="delete from product where Name=?";
 			statement=connection.prepareStatement(deleteSqlQuery);
+			statement.setString(1, "Samsung A52S");
 			
 			statement.executeUpdate();
 			
