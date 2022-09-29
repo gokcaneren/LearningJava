@@ -24,6 +24,13 @@ public class Main {
 			connection=dbHelper.connectDatabase();
 			//System.out.println("Succesfully connected to database!");
 			
+			String updateSqlQuery="update product set Stock=13 where Name='Samsung A52S'";
+			statement=connection.prepareStatement(updateSqlQuery);
+			statement.executeUpdate();
+			
+			System.out.println("Product Updated!");
+			
+			/*
 			String insertSqlQuery="insert into product (Name, Stock) values (?,?)";
 			statement=connection.prepareStatement(insertSqlQuery);
 			
@@ -33,7 +40,7 @@ public class Main {
 			statement.executeUpdate();
 			
 			System.out.println("New data added to Product!");
-			/*
+			
 			resultSet=statement.executeQuery("select * from product");
 			
 			while (resultSet.next()) {
@@ -50,6 +57,7 @@ public class Main {
 		} catch (SQLException ex) {
 			dbHelper.showErrorMessage(ex);
 		} finally {
+			statement.close();
 			connection.close();
 		}
 	}
